@@ -46,6 +46,9 @@ references/
 # CMake compile database symlink for editor tooling
 compile_commands.json
 
+# Local build output
+build/
+
 # OS / local caches
 .DS_Store
 .cache/
