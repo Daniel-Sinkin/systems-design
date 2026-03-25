@@ -39,3 +39,13 @@
 
 # debug information files
 *.dwo
+
+# References
+references/
+
+# CMake compile database symlink for editor tooling
+compile_commands.json
+
+# OS / local caches
+.DS_Store
+.cache/

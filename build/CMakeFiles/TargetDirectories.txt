@@ -1,0 +1,4 @@
+/Users/danielsinkin/GitHub_private/systems-design/build/CMakeFiles/ds_sysdes_pch.dir
+/Users/danielsinkin/GitHub_private/systems-design/build/CMakeFiles/main.dir
+/Users/danielsinkin/GitHub_private/systems-design/build/CMakeFiles/edit_cache.dir
+/Users/danielsinkin/GitHub_private/systems-design/build/CMakeFiles/rebuild_cache.dir
