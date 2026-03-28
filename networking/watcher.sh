@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
 cd "$(dirname "$0")"
-
 watchexec --restart \
   --postpone \
-  --poll 500ms \
   --stop-signal SIGTERM \
   --stop-timeout 2s \
   --watch src \
