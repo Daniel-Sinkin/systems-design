@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 watchexec --restart \
   --postpone \
-  --poll 500ms \
+  --poll 100ms \
   --stop-signal SIGTERM \
   --stop-timeout 2s \
   --watch src \
