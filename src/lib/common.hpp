@@ -34,4 +34,20 @@ using f64 = double;
 static_assert(sizeof(f32) == 4);
 static_assert(sizeof(f64) == 8);
 
+namespace literals {
+
+[[nodiscard]] constexpr auto operator""_b(unsigned long long value) noexcept -> usize {
+    return static_cast<usize>(value);
+}
+
+[[nodiscard]] constexpr auto operator""_kib(unsigned long long value) noexcept -> usize {
+    return static_cast<usize>(value * 1024ULL);
+}
+
+[[nodiscard]] constexpr auto operator""_mib(unsigned long long value) noexcept -> usize {
+    return static_cast<usize>(value * 1024ULL * 1024ULL);
+}
+
+} // namespace literals
+
 } // namespace ds_sysdes
