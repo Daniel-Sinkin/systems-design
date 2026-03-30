@@ -13,17 +13,18 @@ namespace ds_sysdes {
 
 template <typename T>
 concept TrivialMessage =
-    std::is_trivially_copyable_v<T> &&
+    std::is_default_constructible_v<T> and
+    std::is_trivially_copyable_v<T> and
     std::is_trivially_destructible_v<T>;
 
 template <typename U, typename T>
 concept NothrowAssignableTo =
-    std::assignable_from<T&, U&&> &&
-    std::is_nothrow_assignable_v<T&, U&&>;
+    std::assignable_from<T &, U &&> and
+    std::is_nothrow_assignable_v<T &, U &&>;
 
 template <std::unsigned_integral T>
 [[nodiscard]] constexpr auto is_power_of_2(T x) noexcept -> bool {
-    return (x > 0) && ((x & (x - 1)) == 0);
+    return (x > 0) and ((x & (x - 1)) == 0);
 }
 
 template <TrivialMessage T, usize BufferSize = 1024>
@@ -31,7 +32,7 @@ template <TrivialMessage T, usize BufferSize = 1024>
 class SPSC_NonBlocking {
 public:
     template <NothrowAssignableTo<T> U>
-    [[nodiscard]] auto push(U&& msg) noexcept -> bool {
+    [[nodiscard]] auto push(U &&msg) noexcept -> bool {
         const auto h = head_.load(std::memory_order_relaxed);
         const auto t = tail_.load(std::memory_order_acquire);
         if (full_(h, t)) {
@@ -43,7 +44,7 @@ public:
         return true;
     }
 
-    [[nodiscard]] auto pop(T& out) noexcept -> bool {
+    [[nodiscard]] auto pop(T &out) noexcept -> bool {
         const auto h = head_.load(std::memory_order_acquire);
         const auto t = tail_.load(std::memory_order_relaxed);
         if (empty_(h, t)) {
